@@ -7,6 +7,8 @@
 
             <h1 class="mb-2 text-2xl font-bold">Hello {{ Auth::user()->name }}! 👋</h1>
             <h6 class="mb-4 font-extralight text-md">Here's your Todo List</h6>
+            <button
+                class="px-4 py-2 mb-4 text-white transition bg-purple-600 rounded-lg hover:bg-purple-700">Save</button>
 
             <!-- Input Field -->
             <div class="flex items-center space-x-2">
@@ -41,3 +43,25 @@
 
     </div>
 </x-app-layout>
+
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('api', {
+
+            apiUrl = 'http:localhost:8000/api/tasks';
+
+            init() {
+                window.axios
+            },
+
+            on: false,
+
+            tasks() {
+
+
+                return
+            }
+        })
+    })
+</script>
