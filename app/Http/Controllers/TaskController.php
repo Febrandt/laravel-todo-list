@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
-        $user = $request->user(); // Get the authenticated user
+        $user = $request->user(); 
 
         $tasks = Task::where('user_id', $user->id)->get();
 
@@ -17,7 +17,7 @@ class TaskController extends Controller
             'tasks' => $tasks,
         ], 200);
     }
-    
+
     public function store(Request $request)
     {
         $validated = $request->validate([

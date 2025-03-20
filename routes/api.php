@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TaskController;
 
-Route::post('/tasks', [TaskController::class, 'store']);
 
-Route::post('/tasks/multiple', [TaskController::class, 'storeMultiple']);
+Route::prefix('api')->middleware('auth')->group(function () {
+    Route::post('/tasks', [TaskController::class, 'store']);
+    
+    Route::post('/tasks/multiple', [TaskController::class, 'storeMultiple']);
+    
+    Route::get('/tasks', [TaskController::class, 'index']);
+});
