@@ -23,10 +23,16 @@
             <!-- Task List -->
             <ul class="mt-4 space-y-2">
                 <template x-for="(task, index) in list" :key="index" x-transition>
-                    <li
-                        class="flex items-center justify-between p-2 rounded-lg text-zinc-900 bg-zinc-100 dark:bg-zinc-700 dark:text-white">
-                        <span x-text="task"></span>
-                        <button class="text-red-500 hover:text-red-700" @click="list.splice(index, 1)">✖</button>
+                    <li class="flex items-center justify-between p-2 rounded-lg text-zinc-900 bg-zinc-100 dark:bg-zinc-700 dark:text-white"
+                        x-data="{ done: false }">
+                        <span x-text="task"
+                            :class="done ? 'line-through opacity-50' :
+                                ''"></span>
+                        <div>
+                            <button class="mr-2 text-red-500 hover:text-red-700" @click="done = !done">✔</button>
+                            <button class="text-red-500 hover:text-red-700" @click="list.splice(index, 1)">✖</button>
+                        </div>
+
                     </li>
                 </template>
             </ul>
