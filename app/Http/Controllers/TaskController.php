@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public function index(Request $request)
+    {
+        $user = $request->user(); // Get the authenticated user
+
+        $tasks = Task::where('user_id', $user->id)->get();
+
+        return response()->json([
+            'tasks' => $tasks,
+        ], 200);
+    }
+    
     public function store(Request $request)
     {
         $validated = $request->validate([
